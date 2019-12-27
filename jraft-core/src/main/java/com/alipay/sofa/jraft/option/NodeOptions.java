@@ -26,6 +26,8 @@ import com.alipay.sofa.jraft.util.Copiable;
 import com.alipay.sofa.jraft.util.JRaftServiceLoader;
 import com.alipay.sofa.jraft.util.Utils;
 
+import java.io.Serializable;
+
 /**
  * Node options.
  *
@@ -33,7 +35,7 @@ import com.alipay.sofa.jraft.util.Utils;
  *
  * 2018-Apr-04 2:59:12 PM
  */
-public class NodeOptions extends RpcOptions implements Copiable<NodeOptions> {
+public class NodeOptions extends RpcOptions implements Copiable<NodeOptions>, Serializable {
 
     public static final JRaftServiceFactory defaultServiceFactory  = JRaftServiceLoader.load(JRaftServiceFactory.class) //
                                                                        .first();

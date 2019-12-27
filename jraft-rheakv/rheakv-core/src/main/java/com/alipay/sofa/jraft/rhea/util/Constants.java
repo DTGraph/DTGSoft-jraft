@@ -43,6 +43,7 @@ public final class Constants {
                                                             false);
 
     public static final long    DEFAULT_REGION_ID       = -1L;
+    public static final int     REGION_COPY_NUMBER      = 3;
 
     private Constants() {
     }

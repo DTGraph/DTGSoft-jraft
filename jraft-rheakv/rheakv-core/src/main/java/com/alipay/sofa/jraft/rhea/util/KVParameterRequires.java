@@ -30,7 +30,7 @@ import com.alipay.sofa.jraft.rhea.metadata.RegionEpoch;
 public final class KVParameterRequires {
 
     public static void requireSameEpoch(final BaseRequest request, final RegionEpoch current) {
-        RegionEpoch requestEpoch = request.getRegionEpoch();
+        RegionEpoch requestEpoch = request.getRegionEpoch();//System.out.println("request epoch = " + requestEpoch);System.out.println("current epoch = " + current);
         if (current.equals(requestEpoch)) {
             return;
         }

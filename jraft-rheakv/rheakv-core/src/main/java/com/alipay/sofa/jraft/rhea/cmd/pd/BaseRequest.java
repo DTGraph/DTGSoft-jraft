@@ -38,6 +38,7 @@ public abstract class BaseRequest implements Serializable {
     public static final byte  GETIDS              = 0x09;
     public static final byte  RETURNIDS           = 0x10;
     public static final byte  DTGREGION_HEARTBEAT = 0x11;
+    public static final byte  CREATE_REGION       = 0x12;
 
     private long              clusterId;
 

@@ -18,6 +18,8 @@ package com.alipay.sofa.jraft.option;
 
 import com.alipay.sofa.jraft.util.Copiable;
 
+import java.io.Serializable;
+
 /**
  * Raft options.
  *
@@ -25,7 +27,7 @@ import com.alipay.sofa.jraft.util.Copiable;
  *
  * 2018-Apr-03 4:38:40 PM
  */
-public class RaftOptions implements Copiable<RaftOptions> {
+public class RaftOptions implements Copiable<RaftOptions>, Serializable {
 
     /** Maximum of block size per RPC */
     private int            maxByteCountPerRpc                   = 128 * 1024;

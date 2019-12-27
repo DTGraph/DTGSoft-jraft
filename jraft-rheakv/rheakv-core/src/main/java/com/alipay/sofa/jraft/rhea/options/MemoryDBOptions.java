@@ -16,11 +16,13 @@
  */
 package com.alipay.sofa.jraft.rhea.options;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jiachun.fjc
  */
-public class MemoryDBOptions {
+public class MemoryDBOptions implements Serializable {
 
     // for segment snapshot file size
     private int keysPerSegment = 4096;

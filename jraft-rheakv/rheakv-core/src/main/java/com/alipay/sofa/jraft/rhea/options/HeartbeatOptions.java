@@ -16,13 +16,15 @@
  */
 package com.alipay.sofa.jraft.rhea.options;
 
+import java.io.Serializable;
+
 /**
  * @author jiachun.fjc
  */
-public class HeartbeatOptions {
+public class HeartbeatOptions implements Serializable {
 
-    private long storeHeartbeatIntervalSeconds  = 10;
-    private long regionHeartbeatIntervalSeconds = 10;
+    private long storeHeartbeatIntervalSeconds  = 5;
+    private long regionHeartbeatIntervalSeconds = 5;
     private int  heartbeatRpcTimeoutMillis      = 5000;
 
     public long getStoreHeartbeatIntervalSeconds() {

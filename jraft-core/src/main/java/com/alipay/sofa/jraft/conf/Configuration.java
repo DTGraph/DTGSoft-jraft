@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.jraft.conf;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -38,7 +39,7 @@ import com.alipay.sofa.jraft.util.Requires;
  *
  * 2018-Mar-15 11:00:26 AM
  */
-public class Configuration implements Iterable<PeerId>, Copiable<Configuration> {
+public class Configuration implements Iterable<PeerId>, Copiable<Configuration>, Serializable {
 
     private static final Logger   LOG             = LoggerFactory.getLogger(Configuration.class);
 

@@ -16,12 +16,14 @@
  */
 package com.alipay.sofa.jraft.rhea.options;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dennis
  * @author jiachun.fjc
  */
-public class RocksDBOptions {
+public class RocksDBOptions implements Serializable {
 
     // The raft log used fsync by default, and the correctness of
     // state-machine data with rheakv depends on the raft log + snapshot,

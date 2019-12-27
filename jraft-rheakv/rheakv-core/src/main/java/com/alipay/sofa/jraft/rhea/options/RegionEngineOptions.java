@@ -21,6 +21,7 @@ import com.alipay.sofa.jraft.util.BytesUtil;
 import com.alipay.sofa.jraft.util.Copiable;
 import com.alipay.sofa.jraft.util.Endpoint;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.zip.CheckedOutputStream;
 
@@ -29,7 +30,7 @@ import java.util.zip.CheckedOutputStream;
  * @author jiachun.fjc
  * @modifid by: jinkai
  */
-public class RegionEngineOptions implements Copiable<RegionEngineOptions> {
+public class RegionEngineOptions implements Copiable<RegionEngineOptions>, Serializable {
 
     private Long         regionId;
     private String       startKey;
@@ -51,6 +52,7 @@ public class RegionEngineOptions implements Copiable<RegionEngineOptions> {
 
     private long         initNodeId;
     private long         initRelationId;
+    private long         initTempProId;
 
     private List<long[]> NodeIdRangeList;
     private List<long[]> RelationIdRangeList;
@@ -134,6 +136,14 @@ public class RegionEngineOptions implements Copiable<RegionEngineOptions> {
 
     public void setEndKeyBytes(byte[] endKeyBytes) {
         this.endKeyBytes = endKeyBytes;
+    }
+
+    public long getInitTempProId() {
+        return initTempProId;
+    }
+
+    public void setInitTempProId(long initTempProId) {
+        this.initTempProId = initTempProId;
     }
 
     //

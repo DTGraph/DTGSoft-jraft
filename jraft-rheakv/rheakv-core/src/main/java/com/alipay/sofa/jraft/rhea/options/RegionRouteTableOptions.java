@@ -34,6 +34,7 @@ public class RegionRouteTableOptions {
 
     private long         initNodeId;
     private long         initRelationId;
+    private long         initTempProId;
 
     //    private String nodeStartId;
     //    private byte[] nodeStartIdBytes;
@@ -135,6 +136,14 @@ public class RegionRouteTableOptions {
 
     public long getInitRelationId() {
         return initRelationId;
+    }
+
+    public void setInitTempProId(long initTempProId) {
+        this.initTempProId = initTempProId;
+    }
+
+    public long getInitTempProId() {
+        return initTempProId;
     }
 
     //    public String getNodeStartId() {

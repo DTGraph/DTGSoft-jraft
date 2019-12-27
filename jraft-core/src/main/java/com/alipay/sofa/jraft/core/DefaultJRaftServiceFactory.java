@@ -31,6 +31,8 @@ import com.alipay.sofa.jraft.storage.snapshot.local.LocalSnapshotStorage;
 import com.alipay.sofa.jraft.util.Requires;
 import com.alipay.sofa.jraft.util.SPI;
 
+import java.io.Serializable;
+
 /**
  * The default factory for JRaft services.
  * @author boyan(boyan@antfin.com)
@@ -38,7 +40,7 @@ import com.alipay.sofa.jraft.util.SPI;
  *
  */
 @SPI
-public class DefaultJRaftServiceFactory implements JRaftServiceFactory {
+public class DefaultJRaftServiceFactory implements JRaftServiceFactory, Serializable {
 
     public static DefaultJRaftServiceFactory newInstance() {
         return new DefaultJRaftServiceFactory();

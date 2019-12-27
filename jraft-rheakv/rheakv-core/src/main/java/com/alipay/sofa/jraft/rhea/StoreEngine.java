@@ -90,18 +90,12 @@ public class StoreEngine implements Lifecycle<StoreEngineOptions> {
         ExtSerializerSupports.init();
     }
 
-<<<<<<< HEAD
+
     private final ConcurrentMap<Long, RegionKVService> regionKVServiceTable = Maps.newConcurrentMapLong();
     private final ConcurrentMap<Long, RegionEngine>    regionEngineTable    = Maps.newConcurrentMapLong();
     private final StateListenerContainer<Long>         stateListenerContainer;
     private final PlacementDriverClient                pdClient;
     private final long                                 clusterId;
-=======
-    protected final ConcurrentMap<Long, RegionKVService> regionKVServiceTable = Maps.newConcurrentMapLong();
-    protected final ConcurrentMap<Long, RegionEngine>    regionEngineTable    = Maps.newConcurrentMapLong();
-    private final PlacementDriverClient                  pdClient;
-    protected final long                                 clusterId;
->>>>>>> first commit
 
     protected Long                                       storeId;
     protected final AtomicBoolean                        splitting            = new AtomicBoolean(false);
