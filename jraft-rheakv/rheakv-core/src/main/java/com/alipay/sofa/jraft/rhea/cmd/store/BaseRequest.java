@@ -51,6 +51,7 @@ public abstract class BaseRequest implements Serializable {
     public static final byte  TRANSACTION_REQUEST = 0x14;
     public static final byte  COMMIT_REQUEST      = 0x15;
 
+
     private long              regionId;
     private RegionEpoch       regionEpoch;
 
