@@ -39,7 +39,8 @@ public class Node {
         this.rheaKVStore.init(this.options);
     }
 
-    public void stop() {System.out.println("shutdown");
+    public void stop() {
+        System.out.println("shutdown");
         this.rheaKVStore.shutdown();
     }
 

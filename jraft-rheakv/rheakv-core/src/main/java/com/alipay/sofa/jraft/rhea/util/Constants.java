@@ -42,7 +42,7 @@ public final class Constants {
     public static final boolean THREAD_AFFINITY_ENABLED = SystemPropertyUtil.getBoolean("rhea.thread.affinity.enabled",
                                                             false);
 
-    public static final long    DEFAULT_REGION_ID       = -1L;
+    public static final long    DEFAULT_REGION_ID       = 1L;
     public static final int     REGION_COPY_NUMBER      = 3;
 
     private Constants() {

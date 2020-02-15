@@ -344,7 +344,7 @@ public class RegionEngineOptions implements Copiable<RegionEngineOptions>, Seria
         return copy;
     }
 
-    public RegionEngineOptions copyNull(){
+    public RegionEngineOptions copyNull() {
         final RegionEngineOptions copy = new RegionEngineOptions();
         copy.setNodeOptions(this.nodeOptions == null ? new NodeOptions() : this.nodeOptions.copy());
         copy.setRaftGroupId(this.raftGroupId);

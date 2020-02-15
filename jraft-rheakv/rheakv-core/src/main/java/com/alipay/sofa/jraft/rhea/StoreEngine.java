@@ -83,13 +83,12 @@ import com.codahale.metrics.Slf4jReporter;
  */
 public class StoreEngine implements Lifecycle<StoreEngineOptions> {
 
-    private static final Logger                          LOG                  = LoggerFactory
-                                                                                  .getLogger(StoreEngine.class);
+    private static final Logger                        LOG                  = LoggerFactory
+                                                                                .getLogger(StoreEngine.class);
 
     static {
         ExtSerializerSupports.init();
     }
-
 
     private final ConcurrentMap<Long, RegionKVService> regionKVServiceTable = Maps.newConcurrentMapLong();
     private final ConcurrentMap<Long, RegionEngine>    regionEngineTable    = Maps.newConcurrentMapLong();
@@ -97,29 +96,29 @@ public class StoreEngine implements Lifecycle<StoreEngineOptions> {
     private final PlacementDriverClient                pdClient;
     private final long                                 clusterId;
 
-    protected Long                                       storeId;
-    protected final AtomicBoolean                        splitting            = new AtomicBoolean(false);
+    protected Long                                     storeId;
+    protected final AtomicBoolean                      splitting            = new AtomicBoolean(false);
     // When the store is started (unix timestamp in milliseconds)
-    protected long                                       startTime            = System.currentTimeMillis();
-    protected File                                       dbPath;
-    protected RpcServer                                  rpcServer;
-    protected BatchRawKVStore<?>                         rawKVStore;
-    protected HeartbeatSender                            heartbeatSender;
-    protected StoreEngineOptions                         storeOpts;
+    protected long                                     startTime            = System.currentTimeMillis();
+    protected File                                     dbPath;
+    protected RpcServer                                rpcServer;
+    protected BatchRawKVStore<?>                       rawKVStore;
+    protected HeartbeatSender                          heartbeatSender;
+    protected StoreEngineOptions                       storeOpts;
 
     // Shared executor services
-    protected ExecutorService                            readIndexExecutor;
-    protected ExecutorService                            raftStateTrigger;
-    protected ExecutorService                            snapshotExecutor;
-    protected ExecutorService                            cliRpcExecutor;
-    protected ExecutorService                            raftRpcExecutor;
-    protected ExecutorService                            kvRpcExecutor;
+    protected ExecutorService                          readIndexExecutor;
+    protected ExecutorService                          raftStateTrigger;
+    protected ExecutorService                          snapshotExecutor;
+    protected ExecutorService                          cliRpcExecutor;
+    protected ExecutorService                          raftRpcExecutor;
+    protected ExecutorService                          kvRpcExecutor;
 
-    protected ScheduledExecutorService                   metricsScheduler;
-    protected ScheduledReporter                          kvMetricsReporter;
-    protected ScheduledReporter                          threadPoolMetricsReporter;
+    protected ScheduledExecutorService                 metricsScheduler;
+    protected ScheduledReporter                        kvMetricsReporter;
+    protected ScheduledReporter                        threadPoolMetricsReporter;
 
-    protected boolean                                    started;
+    protected boolean                                  started;
 
     public StoreEngine(PlacementDriverClient pdClient, StateListenerContainer<Long> stateListenerContainer) {
         this.pdClient = Requires.requireNonNull(pdClient, "pdClient");
