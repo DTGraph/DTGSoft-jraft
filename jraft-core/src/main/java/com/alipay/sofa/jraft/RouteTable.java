@@ -16,6 +16,8 @@
  */
 package com.alipay.sofa.jraft;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
@@ -24,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.StampedLock;
 
+import com.alipay.sofa.jraft.util.Endpoint;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +55,8 @@ public class RouteTable {
 
     // Map<groupId, groupConf>
     private final ConcurrentMap<String, GroupConf> groupConfTable = new ConcurrentHashMap<>();
+
+    private final List<Endpoint>                    refreshingList = new LinkedList<>();
 
     public static RouteTable getInstance() {
         return INSTANCE;
@@ -228,7 +233,6 @@ public class RouteTable {
                                                                                                                    TimeoutException {
         Requires.requireTrue(!StringUtils.isBlank(groupId), "Blank group id");
         Requires.requireTrue(timeoutMs > 0, "Invalid timeout: " + timeoutMs);
-
         final Configuration conf = getConfiguration(groupId);
         if (conf == null) {
             return new Status(RaftError.ENOENT,
@@ -240,13 +244,27 @@ public class RouteTable {
         final CliRequests.GetLeaderRequest request = rb.build();
         TimeoutException timeoutException = null;
         for (final PeerId peer : conf) {
-            System.out.println(peer.getEndpoint().toString());
-            if (!cliClientService.connect(peer.getEndpoint())) {
+            Endpoint endpoint = peer.getEndpoint();
+            if(refreshingList.contains(endpoint)){
+                while (refreshingList.contains(endpoint)){
+                    Thread.sleep(Configuration.connectWaitTime);
+                }
+                continue;
+            }else{
+                synchronized (refreshingList){
+                    refreshingList.add(endpoint);
+                }
+            }
+            if (!cliClientService.connect(endpoint)) {
+                //System.out.println("RouteTable refreshLeader...");
                 if (st.isOk()) {
                     st.setError(-1, "Fail to init channel to %s", peer);
                 } else {
                     final String savedMsg = st.getErrorMsg();
                     st.setError(-1, "%s, Fail to init channel to %s", savedMsg, peer);
+                }
+                synchronized (refreshingList){
+                    refreshingList.remove(endpoint);
                 }
                 continue;
             }
@@ -273,6 +291,10 @@ public class RouteTable {
                 } else {
                     final String savedMsg = st.getErrorMsg();
                     st.setError(-1, "%s, %s", savedMsg, e.getMessage());
+                }
+            }finally {
+                synchronized (refreshingList){
+                    refreshingList.remove(endpoint);
                 }
             }
         }

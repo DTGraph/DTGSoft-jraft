@@ -32,6 +32,7 @@ public class RequestProcessClosure<REQ, RSP> implements Closure {
     private final REQ          request;
     private final BizContext   bizContext;
     private final AsyncContext asyncContext;
+    private boolean hasSendResponse = false;
 
     private RSP                response;
 
@@ -58,7 +59,15 @@ public class RequestProcessClosure<REQ, RSP> implements Closure {
         return response;
     }
 
+    public boolean isHasSendResponse() {
+        return hasSendResponse;
+    }
+
     public void sendResponse(RSP response) {
+        if(hasSendResponse){
+            return;
+        }
+        this.hasSendResponse = true;
         this.response = response;
         run(Status.OK());
     }

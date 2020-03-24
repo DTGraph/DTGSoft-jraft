@@ -38,6 +38,7 @@ public class DiscardOldPolicyWithReport extends AbstractRejectedExecutionHandler
 
     @Override
     public void rejectedExecution(final Runnable r, final ThreadPoolExecutor e) {
+        System.out.println("DiscardOldPolicyWithReport");
         LOG.error("Thread pool [{}] is exhausted! {}.", threadPoolName, e.toString());
 
         dumpJvmInfoIfNeeded();

@@ -48,8 +48,8 @@ public enum Errors {
                        + "for more details.", InvalidRequestException::new),
 
     LEADER_NOT_AVAILABLE(3, "The leader is not available.", LeaderNotAvailableException::new),
-
-    NOT_LEADER(4, "This is not the correct leader.", NotLeaderException::new),
+    NOT_LEADER
+    (4, "This is not the correct leader.", NotLeaderException::new),
 
     INVALID_PARAMETER(5, "Invalid parameter error, please check your input parameters. See the server logs for more "
                          + "details.", InvalidParameterException::new),
@@ -84,7 +84,19 @@ public enum Errors {
                             + "The new region cannot be created.", RangeSplitFailException::new),
 
     TOO_SMALL_TO_SPLIT(18, "The region size is too small to split. See the server logs for more details.",
-        RangeSplitFailException::new);
+        RangeSplitFailException::new),
+
+    TRANSACTION_ERROR(19, "the transaction meet some errors",
+                       TxErrors::new),
+
+    TRANSACTION_LOCK_ERROR(20, "the transaction request lock meet some errors",
+                      TxErrors::new),
+
+    TRANSACTION_FIRSTPHASE_ERROR(21, "the transaction first phase meet some errors",
+            TxErrors::new),
+
+    TRANSACTION_SECOND_ERROR(22, "the transaction second phase meet some errors",
+            TxErrors::new);
 
     private interface ApiExceptionBuilder {
         ApiException build(final String message);

@@ -44,9 +44,15 @@ public final class FailoverClosureImpl<T> extends BaseKVStoreClosure implements 
     private final boolean              retryOnInvalidEpoch;
     private final int                  retriesLeft;
     private final RetryRunner          retryRunner;
+    private int                        RetrySleep = 0;
 
     public FailoverClosureImpl(CompletableFuture<T> future, int retriesLeft, RetryRunner retryRunner) {
         this(future, true, retriesLeft, retryRunner);
+    }
+
+    public FailoverClosureImpl(CompletableFuture<T> future, int retriesLeft, RetryRunner retryRunner ,int RetrySleep) {
+        this(future, true, retriesLeft, retryRunner);
+        this.RetrySleep = RetrySleep;
     }
 
     public FailoverClosureImpl(CompletableFuture<T> future, boolean retryOnInvalidEpoch, int retriesLeft,
@@ -69,6 +75,13 @@ public final class FailoverClosureImpl<T> extends BaseKVStoreClosure implements 
         if (this.retriesLeft > 0
             && (ErrorsHelper.isInvalidPeer(error) || (this.retryOnInvalidEpoch && ErrorsHelper.isInvalidEpoch(error)))) {
             LOG.warn("[Failover] status: {}, error: {}, [{}] retries left.", status, error, this.retriesLeft);
+            if(this.RetrySleep != 0){
+                try {
+                    Thread.sleep(this.RetrySleep);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             this.retryRunner.run(error);
         } else {
             if (this.retriesLeft <= 0) {

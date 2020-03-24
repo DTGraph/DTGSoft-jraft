@@ -35,7 +35,7 @@ import com.alipay.sofa.jraft.util.SystemPropertyUtil;
  */
 public final class FutureHelper {
 
-    public static final long DEFAULT_TIMEOUT_MILLIS = SystemPropertyUtil.getLong("rhea.default_future_timeout", 10000);
+    public static final long DEFAULT_TIMEOUT_MILLIS = SystemPropertyUtil.getLong("rhea.default_future_timeout", 40000);
 
     public static <V> V get(final CompletableFuture<V> future) {
         return get(future, DEFAULT_TIMEOUT_MILLIS);

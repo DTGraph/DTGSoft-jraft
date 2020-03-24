@@ -50,6 +50,8 @@ public class Configuration implements Iterable<PeerId>, Copiable<Configuration>,
     // use LinkedHashSet to keep insertion order.
     private LinkedHashSet<PeerId> learners        = new LinkedHashSet<>();
 
+    public static final int       connectWaitTime = 100;
+
     public Configuration() {
         super();
     }

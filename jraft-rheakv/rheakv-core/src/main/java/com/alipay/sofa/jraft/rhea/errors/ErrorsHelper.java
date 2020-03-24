@@ -36,6 +36,15 @@ public final class ErrorsHelper {
                || error == Errors.INVALID_REGION_EPOCH;
     }
 
+    public static boolean isTransactionError(final Errors error) {
+        return error == Errors.TRANSACTION_SECOND_ERROR //
+                || error == Errors.TRANSACTION_FIRSTPHASE_ERROR //
+                || error == Errors.TRANSACTION_LOCK_ERROR
+                || error == Errors.TRANSACTION_ERROR;
+    }
+
+
+
     private ErrorsHelper() {
     }
 }
