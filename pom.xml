@@ -280,11 +280,11 @@
                 <version>${powermock.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>JINKAI</groupId>
-                <artifactId>Dis-TGraph</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>JINKAI</groupId>-->
+            <!--<artifactId>Dis-TGraph</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
         </dependencies>
 
     </dependencyManagement>

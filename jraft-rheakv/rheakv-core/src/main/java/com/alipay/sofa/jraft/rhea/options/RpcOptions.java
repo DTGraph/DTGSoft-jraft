@@ -27,7 +27,7 @@ public class RpcOptions {
     private int callbackExecutorCorePoolSize    = Utils.cpus() << 2;
     private int callbackExecutorMaximumPoolSize = Utils.cpus() << 3;
     private int callbackExecutorQueueCapacity   = 512;
-    private int rpcTimeoutMillis                = 5000;
+    private int rpcTimeoutMillis                = 50000;
 
     public int getCallbackExecutorCorePoolSize() {
         return callbackExecutorCorePoolSize;

@@ -56,7 +56,7 @@ public class RouteTable {
     // Map<groupId, groupConf>
     private final ConcurrentMap<String, GroupConf> groupConfTable = new ConcurrentHashMap<>();
 
-    private final List<Endpoint>                    refreshingList = new LinkedList<>();
+    private final List<Endpoint>                   refreshingList = new LinkedList<>();
 
     public static RouteTable getInstance() {
         return INSTANCE;
@@ -245,13 +245,13 @@ public class RouteTable {
         TimeoutException timeoutException = null;
         for (final PeerId peer : conf) {
             Endpoint endpoint = peer.getEndpoint();
-            if(refreshingList.contains(endpoint)){
-                while (refreshingList.contains(endpoint)){
+            if (refreshingList.contains(endpoint)) {
+                while (refreshingList.contains(endpoint)) {
                     Thread.sleep(Configuration.connectWaitTime);
                 }
                 continue;
-            }else{
-                synchronized (refreshingList){
+            } else {
+                synchronized (refreshingList) {
                     refreshingList.add(endpoint);
                 }
             }
@@ -263,7 +263,7 @@ public class RouteTable {
                     final String savedMsg = st.getErrorMsg();
                     st.setError(-1, "%s, Fail to init channel to %s", savedMsg, peer);
                 }
-                synchronized (refreshingList){
+                synchronized (refreshingList) {
                     refreshingList.remove(endpoint);
                 }
                 continue;
@@ -292,8 +292,8 @@ public class RouteTable {
                     final String savedMsg = st.getErrorMsg();
                     st.setError(-1, "%s, %s", savedMsg, e.getMessage());
                 }
-            }finally {
-                synchronized (refreshingList){
+            } finally {
+                synchronized (refreshingList) {
                     refreshingList.remove(endpoint);
                 }
             }

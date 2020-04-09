@@ -94,7 +94,7 @@ public class DefaultRheaKVCliService implements RheaKVCliService {
     private void initCli(CliOptions cliOpts) {
         if (cliOpts == null) {
             cliOpts = new CliOptions();
-            cliOpts.setTimeoutMs(5000);
+            cliOpts.setTimeoutMs(50000);
             cliOpts.setMaxRetry(3);
         }
         this.opts = cliOpts;

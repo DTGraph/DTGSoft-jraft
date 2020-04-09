@@ -38,7 +38,7 @@ import com.alipay.sofa.jraft.rhea.storage.BaseKVStoreClosure;
  */
 public final class FailoverClosureImpl<T> extends BaseKVStoreClosure implements FailoverClosure<T> {
 
-    private static final Logger        LOG = LoggerFactory.getLogger(FailoverClosureImpl.class);
+    private static final Logger        LOG        = LoggerFactory.getLogger(FailoverClosureImpl.class);
 
     private final CompletableFuture<T> future;
     private final boolean              retryOnInvalidEpoch;
@@ -50,7 +50,7 @@ public final class FailoverClosureImpl<T> extends BaseKVStoreClosure implements 
         this(future, true, retriesLeft, retryRunner);
     }
 
-    public FailoverClosureImpl(CompletableFuture<T> future, int retriesLeft, RetryRunner retryRunner ,int RetrySleep) {
+    public FailoverClosureImpl(CompletableFuture<T> future, int retriesLeft, RetryRunner retryRunner, int RetrySleep) {
         this(future, true, retriesLeft, retryRunner);
         this.RetrySleep = RetrySleep;
     }
@@ -75,7 +75,7 @@ public final class FailoverClosureImpl<T> extends BaseKVStoreClosure implements 
         if (this.retriesLeft > 0
             && (ErrorsHelper.isInvalidPeer(error) || (this.retryOnInvalidEpoch && ErrorsHelper.isInvalidEpoch(error)))) {
             LOG.warn("[Failover] status: {}, error: {}, [{}] retries left.", status, error, this.retriesLeft);
-            if(this.RetrySleep != 0){
+            if (this.RetrySleep != 0) {
                 try {
                     Thread.sleep(this.RetrySleep);
                 } catch (InterruptedException e) {
