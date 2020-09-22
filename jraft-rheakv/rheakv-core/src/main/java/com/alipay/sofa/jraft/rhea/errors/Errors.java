@@ -96,7 +96,17 @@ public enum Errors {
             TxErrors::new),
 
     TRANSACTION_SECOND_ERROR(22, "the transaction second phase meet some errors",
+            TxErrors::new),
+
+    TRANSACTION_VERSION_ERROR(23, "the transaction can not get version successfully",
+            TxErrors::new),
+
+    TRANSACTION_FULL(24, "the server is full, please send request later",
+                              TxErrors::new),
+
+    REQUEST_REPEATE(25, "the server is full, please send request later",
             TxErrors::new);
+
 
     private interface ApiExceptionBuilder {
         ApiException build(final String message);

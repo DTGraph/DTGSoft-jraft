@@ -50,6 +50,13 @@ public final class KVParameterRequires {
         return target;
     }
 
+    public static boolean requireTrue(boolean f, final String message) {
+        if (f == false) {
+            throw new InvalidParameterException(message);
+        }
+        return true;
+    }
+
     public static <T> List<T> requireNonEmpty(final List<T> target, final String message) {
         requireNonNull(target, message);
         if (target.isEmpty()) {

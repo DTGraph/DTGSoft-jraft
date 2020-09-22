@@ -40,11 +40,11 @@
         <module>jraft-rheakv</module>
     </modules>
 
-    <scm>
-        <connection>scm:git:git://github.com/alipay/sofa-jraft.git</connection>
-        <developerConnection>scm:git:ssh://github.com/alipay/sofa-jraft.git</developerConnection>
-        <url>http://github.com/alipay/sofa-jraft/tree/master</url>
-    </scm>
+    <!--<scm>-->
+    <!--<connection>scm:git:git://github.com/alipay/sofa-jraft.git</connection>-->
+    <!--<developerConnection>scm:git:ssh://github.com/alipay/sofa-jraft.git</developerConnection>-->
+    <!--<url>http://github.com/alipay/sofa-jraft/tree/master</url>-->
+    <!--</scm>-->
 
     <properties>
         <affinity.version>3.1.7</affinity.version>
